@@ -15,6 +15,7 @@ matrix:
             - g++-7
       env:
         - WXWIDGETS_VERSION=3.1.1
+        - WXWIDGETS_BRANCH=stable
         - BUILD_TYPE=Release
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
     - os: linux
@@ -29,6 +30,7 @@ matrix:
             - g++-8
       env:
         - WXWIDGETS_VERSION=3.1.1
+        - WXWIDGETS_BRANCH=stable
         - BUILD_TYPE=Release
         - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
     - os: linux
@@ -43,6 +45,7 @@ matrix:
             - g++-7
       env:
         - WXWIDGETS_VERSION=3.1.2
+        - WXWIDGETS_BRANCH=stable
         - BUILD_TYPE=Release
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
     - os: linux
@@ -57,6 +60,7 @@ matrix:
             - g++-8
       env:
         - WXWIDGETS_VERSION=3.1.2
+        - WXWIDGETS_BRANCH=stable
         - BUILD_TYPE=Release
         - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
     - os: linux
@@ -71,6 +75,7 @@ matrix:
             - g++-7
       env:
         - WXWIDGETS_VERSION=3.1.1
+        - WXWIDGETS_BRANCH=stable
         - BUILD_TYPE=Debug
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
     - os: linux
@@ -85,6 +90,7 @@ matrix:
             - g++-8
       env:
         - WXWIDGETS_VERSION=3.1.1
+        - WXWIDGETS_BRANCH=stable
         - BUILD_TYPE=Debug
         - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
     - os: linux
@@ -99,6 +105,7 @@ matrix:
             - g++-7
       env:
         - WXWIDGETS_VERSION=3.1.2
+        - WXWIDGETS_BRANCH=stable
         - BUILD_TYPE=Debug
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
     - os: linux
@@ -113,6 +120,127 @@ matrix:
             - g++-8
       env:
         - WXWIDGETS_VERSION=3.1.2
+        - WXWIDGETS_BRANCH=stable
+        - BUILD_TYPE=Debug
+        - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - python3
+            - python3-pip
+            - python3-setuptools
+            - g++-7
+      env:
+        - WXWIDGETS_VERSION=3.1.1
+        - WXWIDGETS_BRANCH=testing
+        - BUILD_TYPE=Release
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - python3
+            - python3-pip
+            - python3-setuptools
+            - g++-8
+      env:
+        - WXWIDGETS_VERSION=3.1.1
+        - WXWIDGETS_BRANCH=testing
+        - BUILD_TYPE=Release
+        - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - python3
+            - python3-pip
+            - python3-setuptools
+            - g++-7
+      env:
+        - WXWIDGETS_VERSION=3.1.2
+        - WXWIDGETS_BRANCH=testing
+        - BUILD_TYPE=Release
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - python3
+            - python3-pip
+            - python3-setuptools
+            - g++-8
+      env:
+        - WXWIDGETS_VERSION=3.1.2
+        - WXWIDGETS_BRANCH=testing
+        - BUILD_TYPE=Release
+        - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - python3
+            - python3-pip
+            - python3-setuptools
+            - g++-7
+      env:
+        - WXWIDGETS_VERSION=3.1.1
+        - WXWIDGETS_BRANCH=testing
+        - BUILD_TYPE=Debug
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - python3
+            - python3-pip
+            - python3-setuptools
+            - g++-8
+      env:
+        - WXWIDGETS_VERSION=3.1.1
+        - WXWIDGETS_BRANCH=testing
+        - BUILD_TYPE=Debug
+        - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - python3
+            - python3-pip
+            - python3-setuptools
+            - g++-7
+      env:
+        - WXWIDGETS_VERSION=3.1.2
+        - WXWIDGETS_BRANCH=testing
+        - BUILD_TYPE=Debug
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - python3
+            - python3-pip
+            - python3-setuptools
+            - g++-8
+      env:
+        - WXWIDGETS_VERSION=3.1.2
+        - WXWIDGETS_BRANCH=testing
         - BUILD_TYPE=Debug
         - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
 
@@ -123,6 +251,6 @@ script:
   - sudo pip3 install conan
   - mkdir build
   - cd build
-  - cmake -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DWXWIDGETS_VERSION=$WXWIDGETS_VERSION ..
+  - cmake -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DWXWIDGETS_VERSION=$WXWIDGETS_VERSION -DWXWIDGETS_BRANCH=$WXWIDGETS_BRANCH ..
   - cmake --build . --config $BUILD_TYPE
   - ./bin/WxTest

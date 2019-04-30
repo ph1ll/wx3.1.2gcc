@@ -7,6 +7,7 @@ endif()
 project(WxTest LANGUAGES C CXX)
 
 option(WXWIDGETS_VERSION "Version of wxWdigets package to use" 3.1.1)
+option(WXWIDGETS_BRANCH "Branch of wxWdigets package to use" stable)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_LIST_DIR}/cmake")
 include(conan)
@@ -15,7 +16,7 @@ conan_check(VERSION 1.0.0 REQUIRED)
 conan_add_remote(NAME bincrafters URL https://api.bintray.com/conan/bincrafters/public-conan)
 
 conan_cmake_run(REQUIRES 
-                    wxwidgets/${WXWIDGETS_VERSION}@bincrafters/stable
+                    wxwidgets/${WXWIDGETS_VERSION}@bincrafters/${WXWIDGETS_BRANCH}
                 BASIC_SETUP CMAKE_TARGETS
                 BUILD missing)
 
